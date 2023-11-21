@@ -1,0 +1,11 @@
+---
+- name: Run gcp-linux-fastchat-simple role
+  hosts: localhost
+  tasks:
+    - name: Running a role gcp-linux-fastchat-simple creation
+      ansible.builtin.import_role:
+        name: gcp-linux-fastchat-simple
+      vars:
+        project: "fluid-tuner-405104"
+        fastchat_state: present
+

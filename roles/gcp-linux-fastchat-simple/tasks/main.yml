@@ -1,0 +1,22 @@
+---
+- name: Download Terraform modules
+  ansible.builtin.include_tasks:
+    file: download_tf_module.yml 
+
+- name: encrypt Cloud init file 
+  ansible.builtin.include_tasks:
+    file: cloud_init.yml
+
+- name: Optimized Recipe for FastChat
+  ansible.builtin.include_tasks:
+    file: fastchat.yml
+
+- name: Optimized Recipe for security
+  ansible.builtin.include_tasks:
+    file: security.yml    
+  
+
+ 
+
+
+   

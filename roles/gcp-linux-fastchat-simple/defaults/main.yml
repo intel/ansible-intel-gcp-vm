@@ -1,0 +1,3 @@
+---
+# defaults file for gcp-linux-fastchat-simple
+gcp_vm_tf_source: https://github.com/intel/terraform-intel-gcp-vm.git

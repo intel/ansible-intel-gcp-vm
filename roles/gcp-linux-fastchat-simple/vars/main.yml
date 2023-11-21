@@ -1,0 +1,32 @@
+---
+# vars file for intel_optimized_mysql_server_vpc_creation
+# build in
+role_name: '{{role_path|basename}}'
+ansible_python_interpreter: /usr/bin/python3
+
+# optional
+gcp_vm_tf_module_path: '/home/{{ansible_env.USER}}/{{ role_name }}/terraform/gcp_linux_fastchat/'
+
+# fastchat.yml
+project_id: "fluid-tuner-405104" 
+fastchat_state: present
+boot_image_project_name: "ubuntu-os-cloud"
+boot_image_family_name: "ubuntu-2204-lts"
+machine_type_name: "e2-micro "
+zone_name: "us-central1-a"
+network: "default"
+nat_ip_value:  "none"
+public_domain: "none"
+network_tier_name: "PREMIUM"
+
+# security.yml
+project_id_name: "fluid-tuner-405104" 
+firewall_state: present
+network_name: {"selfLink": "global/networks/default"}
+#item_protocol: "tcp"
+gcp_cred_kind: "gcp_terraform_run"
+gcp_cred_file: "/tmp/fluid-tuner-405104-56caae5712d3.json"
+ports: ["22", "5000", "5001", "7860"]
+source_ranges: ["0.0.0.0/0"]
+
+

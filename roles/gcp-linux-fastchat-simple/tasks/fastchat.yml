@@ -1,0 +1,35 @@
+---
+- name: Create random string
+  set_fact:
+    random_id: "{{ lookup('community.general.random_string', length=12, min_special=0, special=false, lower=false, upper=false) }}"
+
+- debug:
+    var: random_id
+
+- name: Create GCP Linux VM with Intel Cloud Optimized Recipe for FastChat
+  community.general.terraform:
+    project_path: '{{ gcp_vm_tf_module_path }}'
+    state: '{{ fastchat_state }}'
+    force_init: true
+    complex_vars: true
+    variables:
+      project: '{{ project_id }}'
+      boot_image_project: '{{ boot_image_project_name }}'
+      boot_image_family: '{{ boot_image_family_name }}'
+      name: 'intel-fastchat-{{ random_id }}'
+      zone: '{{ zone_name }}'
+      machine_type: '{{ machine_type_name }}'
+      allow_stopping_for_update: true
+      tags:
+        - 'fschat-{{ random_id }}'
+      user_data: '{{ cloud_init_data }}'
+      access_config:
+        - nat_ip: ''
+          public_ptr_domain_name: ''
+          network_tier: 'PREMIUM'
+
+  register: fastchat_output
+
+- debug:
+    var: fastchat_output
+
