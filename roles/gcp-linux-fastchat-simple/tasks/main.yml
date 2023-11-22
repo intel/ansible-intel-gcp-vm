@@ -15,18 +15,11 @@
 - name: Optimized Recipe for FastChat
   ansible.builtin.include_tasks:
     file: fastchat.yml
- # when: 'fastchat_state == "present"'
-
-- name: Pause for 5 minutes to build app cache
-  ansible.builtin.pause:
-    minutes: 1
-  when: 'fastchat_state == "absent"' 
-
 
 - name: Optimized Recipe for security
   ansible.builtin.include_tasks:
     file: fw_security.yml    
- # when: 'fastchat_state == "present"'
+
   
 
  

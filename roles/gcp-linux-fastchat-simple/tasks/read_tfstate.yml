@@ -27,21 +27,10 @@
     random_id: "{{ instance_name.split('-')[-1] }}"
   when: instance_name | length > 0
 
-- community.general.terraform:
-    instance_ids: "{{ instance_id }}"
-  register: gcp_info
-  when: instance_id | length > 0
-
-- debug:
-    var: gcp_info
-
-- set_fact:
-    gcp_instance: "{{ gcp_info.instances[0] }}"
-  when: gcp_info.instances is defined
 
 - set_fact:
     gcp_update: true
-  when: fastchat_state == 'present' and gcp_instance | length > 0
+  when: fastchat_state == 'present' and instance_id | length > 0
 
 - ansible.builtin.debug:
     msg:
