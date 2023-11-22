@@ -2,6 +2,11 @@
 - name: Download Terraform modules
   ansible.builtin.include_tasks:
     file: download_tf_module.yml 
+  when: 'fastchat_state == "present"'
+
+- name: Read TF state
+  ansible.builtin.include_tasks:
+    file: read_tfstate.yml
 
 - name: encrypt Cloud init file 
   ansible.builtin.include_tasks:
@@ -10,10 +15,18 @@
 - name: Optimized Recipe for FastChat
   ansible.builtin.include_tasks:
     file: fastchat.yml
+ # when: 'fastchat_state == "present"'
+
+- name: Pause for 5 minutes to build app cache
+  ansible.builtin.pause:
+    minutes: 1
+  when: 'fastchat_state == "absent"' 
+
 
 - name: Optimized Recipe for security
   ansible.builtin.include_tasks:
-    file: security.yml    
+    file: fw_security.yml    
+ # when: 'fastchat_state == "present"'
   
 
  

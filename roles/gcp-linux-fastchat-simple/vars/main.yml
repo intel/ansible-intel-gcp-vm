@@ -15,15 +15,12 @@ boot_image_family_name: "ubuntu-2204-lts"
 machine_type_name: "e2-micro "
 zone_name: "us-central1-a"
 network: "default"
-nat_ip_value:  "none"
-public_domain: "none"
 network_tier_name: "PREMIUM"
 
 # security.yml
 project_id_name: "fluid-tuner-405104" 
-firewall_state: present
+#firewall_state: present
 network_name: {"selfLink": "global/networks/default"}
-#item_protocol: "tcp"
 gcp_cred_kind: "gcp_terraform_run"
 gcp_cred_file: "/tmp/fluid-tuner-405104-56caae5712d3.json"
 ports: ["22", "5000", "5001", "7860"]

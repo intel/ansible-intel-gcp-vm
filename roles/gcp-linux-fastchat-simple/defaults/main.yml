@@ -1,3 +1,11 @@
 ---
 # defaults file for gcp-linux-fastchat-simple
+tags: []
+gcp_update: false
+instance_id: ''
+random_id: ''
+keypair_name: ''
+gcp_instance: ''
+gcp_info:
+  instances: []
 gcp_vm_tf_source: https://github.com/intel/terraform-intel-gcp-vm.git
