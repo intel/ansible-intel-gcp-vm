@@ -27,9 +27,8 @@
     random_id: "{{ instance_name.split('-')[-1] }}"
   when: instance_name | length > 0
 
-
 - set_fact:
-    gcp_update: true
+    vm_update: true
   when: fastchat_state == 'present' and instance_id | length > 0
 
 - ansible.builtin.debug:

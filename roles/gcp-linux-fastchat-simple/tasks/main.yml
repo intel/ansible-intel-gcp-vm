@@ -2,7 +2,7 @@
 - name: Download Terraform modules
   ansible.builtin.include_tasks:
     file: download_tf_module.yml 
-  when: 'fastchat_state == "present"'
+  when: fastchat_state == "present"
 
 - name: Read TF state
   ansible.builtin.include_tasks:

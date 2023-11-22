@@ -2,7 +2,7 @@
 # defaults file for gcp-linux-fastchat-simple
 tags: []
 instance_name: ''
-gcp_update: false
+vm_update: false
 instance_id: ''
 random_id: ''
 keypair_name: ''

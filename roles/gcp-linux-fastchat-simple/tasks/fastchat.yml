@@ -2,6 +2,7 @@
 - name: Create random string
   set_fact:
     random_id: "{{ lookup('community.general.random_string', length=12, min_special=0, special=false, lower=false, upper=false) }}"
+  when: fastchat_state == "present" and vm_update == false
 
 - debug:
     var: random_id
