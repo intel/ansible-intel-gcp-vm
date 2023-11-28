@@ -1,0 +1,35 @@
+- hosts: localhost
+  vars:
+    terraform_source: https://github.com/intel/terraform-intel-gcp-vm.git
+  tasks:
+    - set_fact:
+        terraform_module_download_path: '/home/{{ansible_env.USER}}/terraform/main/intel_gcp_vm/'
+
+    - name: Clone a github repository
+      git:
+        repo: '{{ terraform_source }}'
+        dest: '{{ terraform_module_download_path }}'
+        clone: yes
+        update: yes
+        version: main
+
+    - name: GCP VM Module
+      community.general.terraform:
+        project_path: '{{ terraform_module_download_path }}'
+        state: absent
+        force_init: true
+        complex_vars: true
+        # for additional variables
+        # https://github.com/intel/terraform-intel-gcp-vm/blob/main/variables.tf
+        variables:
+          name: gcp-vm-playbook
+          project: "fluid-tuner-405104"
+          boot_image_project: "ubuntu-os-cloud"
+          boot_image_family: "ubuntu-2204-lts"
+          zone: "us-central1-a"
+          machine_type: "e2-micro"
+          allow_stopping_for_update: true
+      register: vm_output
+
+    - debug:
+        var: vm_output
