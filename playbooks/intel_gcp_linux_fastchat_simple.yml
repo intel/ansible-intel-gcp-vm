@@ -2,7 +2,7 @@
 - name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp_linux_fastchat_simple creation
+    - name: Running a role gcp linux fastchat simple
       ansible.builtin.import_role:
         name: gcp_linux_fastchat_simple
       vars:

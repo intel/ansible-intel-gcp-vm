@@ -4,26 +4,39 @@
 role_name: '{{role_path|basename}}'
 ansible_python_interpreter: /usr/bin/python3
 
-# optional
+# terraform path
 gcp_vm_tf_module_path: '/home/{{ansible_env.USER}}/{{ role_name }}/terraform/gcp_linux_fastchat/'
 
-# fastchat.yml
-project_id: "fluid-tuner-405104" 
-fastchat_state: present
-boot_image_project_name: "ubuntu-os-cloud"
-boot_image_family_name: "ubuntu-2204-lts"
-machine_type_name: "e2-micro "
-zone_name: "us-central1-a"
-network: "default"
-network_tier_name: "PREMIUM"
+# cloud init path
+cloud_init_config_path:  examples/gcp-linux-fastchat-simple/
 
-# security.yml
-project_id_name: "fluid-tuner-405104" 
-#firewall_state: present
+# fastchat.yml
+project: "fluid-tuner-405104"
+fastchat_state: present
+fastchat_vm_name: "intel-fastchat-{{random_id}}"
+boot_image_project: "ubuntu-os-cloud"
+boot_image_family: "ubuntu-2204-lts"
+machine_type: "e2-micro "
+zone: "us-central1-a"
+tags: ["fschat-{{random_id}}"]
+access_config:
+  - nat_ip: ''
+    public_ptr_domain_name: ''
+    network_tier: 'PREMIUM'
+
+
+# firewall security.yml
+fw_name: "intel-fastchat-firewall-{{random_id}}"
+fw_description: "Allows access to FastChat Webserver"
 network_name: {"selfLink": "global/networks/default"}
-gcp_cred_kind: "gcp_terraform_run"
-gcp_cred_file: "/tmp/fluid-tuner-405104-56caae5712d3.json"
+ip_protocol: tcp
 ports: ["22", "5000", "5001", "7860"]
+fw_allowed:
+  - ip_protocol: '{{ ip_protocol }}'
+    ports: '{{ ports }}'
+target_tags: ["fschat-{{random_id}}"]
 source_ranges: ["0.0.0.0/0"]
+gcp_auth_kind: "serviceaccount"
+gcp_cred_file_path: "/tmp/fluid-tuner-405104-56caae5712d3.json"
 
 

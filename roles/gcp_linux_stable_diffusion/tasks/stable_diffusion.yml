@@ -2,30 +2,30 @@
 - name: Create random string
   set_fact:
     random_id: "{{ lookup('community.general.random_string', length=12, min_special=0, special=false, lower=false, upper=false) }}"
-  when: fastchat_state == "present" and vm_update == false
+  when: gcp_vm_state == "present" and vm_update == false
 
 - debug:
     var: random_id
 
-- name: Create GCP Linux VM with Intel Cloud Optimized Recipe for FastChat
+- name: Create GCP Linux VM with Optimized Cloud Recipe for Stable Diffusion
   community.general.terraform:
     project_path: '{{ gcp_vm_tf_module_path }}'
-    state: '{{ fastchat_state }}'
+    state: '{{ gcp_vm_state }}'
     force_init: true
     complex_vars: true
     variables:
       project: '{{ project }}'
       boot_image_project: '{{ boot_image_project }}'
       boot_image_family: '{{ boot_image_family }}'
-      name: '{{ fastchat_vm_name }}'
+      name: '{{ gcp_vm_name }}'
       zone: '{{ zone }}'
       machine_type: '{{ machine_type }}'
       allow_stopping_for_update: true
-      tags: "{{ tags }}"
+      tags: '{{ tags }}'
       user_data: '{{ cloud_init_data }}'
       access_config: '{{ access_config }}'
-  register: fastchat_output
+  register: gcp_vm_output
 
 - debug:
-    var: fastchat_output
+    var: gcp_vm_output
 

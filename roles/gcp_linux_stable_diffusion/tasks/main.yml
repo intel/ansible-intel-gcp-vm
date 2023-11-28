@@ -1,29 +1,22 @@
 ---
-# tasks file for gcp_linux_fastchat simple
+# tasks file for gcp_linux_stable_diffusion
 - name: Download Terraform modules
   ansible.builtin.include_tasks:
-    file: download_tf_module.yml 
-  when: fastchat_state == "present"
+    file: download_tf_module.yml
+  when: gcp_vm_state == "present"
 
 - name: Read TF state
   ansible.builtin.include_tasks:
     file: read_tfstate.yml
 
-- name: encrypt Cloud init file 
+- name: encrypt Cloud init file
   ansible.builtin.include_tasks:
     file: cloud_init_config.yml
 
-- name: Optimized Recipe for FastChat
+- name: Optimized Recipe for GCP linux stable diffusion
   ansible.builtin.include_tasks:
-    file: fastchat.yml
+    file: stable_diffusion.yml
 
 - name: Optimized Recipe for fw security
   ansible.builtin.include_tasks:
-    file: fw_security.yml    
-
-  
-
- 
-
-
-   
+    file: fw_security.yml

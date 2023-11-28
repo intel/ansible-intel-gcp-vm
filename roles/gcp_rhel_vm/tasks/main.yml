@@ -1,0 +1,10 @@
+---
+# tasks file for gcp_rhel_vm
+- name: Download Terraform modules
+  ansible.builtin.include_tasks:
+    file: download_tf_module.yml
+  when: gcp_rhel_vm_state == "present"
+
+- name: Optimized Recipe for Red Hat Enterprise Linux (RHEL) VM
+  ansible.builtin.include_tasks:
+    file: rhel_vm.yml

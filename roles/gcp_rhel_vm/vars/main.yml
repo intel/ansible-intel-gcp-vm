@@ -1,0 +1,19 @@
+---
+# vars file for gcp_rhel_vm
+# build in
+role_name: '{{role_path|basename}}'
+ansible_python_interpreter: /usr/bin/python3
+
+# terraform path
+gcp_vm_tf_module_path: '/home/{{ansible_env.USER}}/{{ role_name }}/terraform/gcp_rhel_vm/'
+
+# rhel_vm
+project: "new-stable-diffusion"
+gcp_rhel_vm_state: present
+boot_image_project: "rhel-8"
+boot_image_family: "rhel-cloud"
+gcp_rhel_vm_name: "vm1"
+access_config:
+  - nat_ip: ''
+    public_ptr_domain_name: ''
+    network_tier: 'PREMIUM'
