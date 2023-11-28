@@ -8,3 +8,7 @@
 - name: Optimized Recipe for Red Hat Enterprise Linux (RHEL) VM
   ansible.builtin.include_tasks:
     file: rhel_vm.yml
+
+- name: Rhel vm output
+  ansible.builtin.include_tasks:
+    file: output.yml
