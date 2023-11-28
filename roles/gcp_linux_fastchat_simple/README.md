@@ -62,12 +62,12 @@ ansible-playbook gcp_linux_fastchat_simple.yml
 #### State - present (terraform apply)
 ```yaml
 ---
-- name: Run gcp-linux-fastchat-simple role
+- name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp-linux-fastchat-simple creation
+    - name: Running a role gcp_linux_fastchat_simple creation
       ansible.builtin.import_role:
-        name: gcp-linux-fastchat-simple
+        name: gcp_linux_fastchat_simple
       vars:
         project: <project_id>
         fastchat_state: present
@@ -80,12 +80,12 @@ ansible-playbook gcp-linux-fastchat-simple.yml
 #### Step 1: Deleting gcp_linux_fastchat_simple 
 ```yaml
 ---
-- name: Run gcp-linux-fastchat-simple role
+- name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp-linux-fastchat-simple creation
+    - name: Running a role gcp_linux_fastchat_simple creation
       ansible.builtin.import_role:
-        name: gcp-linux-fastchat-simple
+        name: gcp_linux_fastchat_simple
       vars:
         project: <project-id>
         fastchat_state: absent

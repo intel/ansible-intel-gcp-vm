@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - gcp-linux-fastchat-simple
+    - gcp_linux_fastchat_simple

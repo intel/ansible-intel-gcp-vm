@@ -1,7 +1,7 @@
 ---
 - name: Slurp the cloud_init config file
   ansible.builtin.slurp:
-    src: '/home/ec2-user/gcp-linux-fastchat-simple/terraform/gcp_linux_fastchat/examples/gcp-linux-fastchat-simple/cloud_init.yml'
+    src: '/home/ec2-user/gcp_linux_fastchat_simple/terraform/gcp_linux_fastchat/examples/gcp_linux_fastchat_simple/cloud_init.yml'
   register: cloud_init_output
 
 - set_fact:

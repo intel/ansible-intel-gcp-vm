@@ -1,5 +1,5 @@
 ---
-# defaults file for gcp-linux-fastchat-simple
+# defaults file for gcp_linux_fastchat_simple
 tags: []
 instance_name: ''
 vm_update: false
