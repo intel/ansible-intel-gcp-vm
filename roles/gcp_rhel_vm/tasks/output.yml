@@ -6,7 +6,7 @@
 - name: Validating gcp_rhel_vm_instance output
   fail:
     msg: "gcp_rhel_vm_instance instance got an error"
-  when: gcp_rhel_vm_instance.outputs | length == 0
+  when: gcp_vm_output.outputs | length == 0
 
 - name: Displaying rhel vm output
   ansible.builtin.debug:
