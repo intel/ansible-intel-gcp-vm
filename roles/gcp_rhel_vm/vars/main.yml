@@ -10,8 +10,8 @@ gcp_vm_tf_module_path: '/home/{{ansible_env.USER}}/{{ role_name }}/terraform/gcp
 # rhel_vm
 project: "new-stable-diffusion"
 gcp_rhel_vm_state: present
-boot_image_project: "rhel-8"
-boot_image_family: "rhel-cloud"
+boot_image_project: "rhel-cloud"
+boot_image_family: "rhel-8"
 gcp_rhel_vm_name: "vm1"
 access_config:
   - nat_ip: ''

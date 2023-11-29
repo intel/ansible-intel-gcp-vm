@@ -37,6 +37,6 @@ fw_allowed:
 target_tags: ["fschat-{{random_id}}"]
 source_ranges: ["0.0.0.0/0"]
 gcp_auth_kind: "serviceaccount"
-gcp_cred_file_path: "/tmp/fluid-tuner-405104-56caae5712d3.json"
+gcp_cred_file_path: "/tmp/gcp_cred.json"
 
 
