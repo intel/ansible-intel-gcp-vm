@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/intel/terraform-intel-aws-mysql/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+  <img src="https://github.com/intel/terraform-intel-gcp-vm/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
 # Intel® Cloud Optimization Modules for Ansible
@@ -10,13 +10,29 @@
 
 This demo will showcase Large Language Model(LLM) CPU inference using 4th Gen Xeon Scalable Processors on GCP.
 
-## gcp-linux-fastchat-simple Example
+Requirements
+------------
+| Name                                                                                            | Version    |
+|-------------------------------------------------------------------------------------------------|------------|
+| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)                       | =1.5.7     |
+| <a name="requirement_google_cloud_cli"></a> [Google Cloud CLI](#requirement\_google_cloud_cli)  | ~> 455.0.0 |
+| <a name="requirement_random"></a> [Random](#requirement\_random)                                | ~>3.4.3    |
+| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core)             | ~>2.14.2   |
+| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                             | ~>7.2.0-1  |
+| <a name="requirement_requests"></a> [Requests](#requirement\_requests)                          | ~> 2.18.4  |
+| <a name="requirement_google_auth"></a> [Google-auth](#requirement\_google_auth)                 | ~>1.3.0    |
+| <a name="requirement_cryptography"></a> [Cryptography](#requirement\_cryptography)              | ~>41.0.5   |
 
-
+1. Install requirements using `requirements.txt` and `requirements.yml`, Use below command:
+    ```bash
+    pip3 install -r requirements.txt
+    ansible-galaxy install -r requirements.yml
+    ```
+2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/tree/main>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
 
 
 ## Installation of `gcp-linux-fastchat-simple` role
-### Below are ways to `How to install and use it`
+### Below are ways to install and use it:
 1. **Case 1:-** Install collection using Ansible Galaxy (Use as third party collection, installed in default location), Use below command to installed collection
     ```commandline
         ansible-galaxy  collection install <intel.ansible-intel-gcp-vm>
@@ -39,72 +55,60 @@ This demo will showcase Large Language Model(LLM) CPU inference using 4th Gen Xe
 
 ## Usage
 Use playbook to run gcp_linux_fastchat_simple as below
-```ansible
+```yml
 ---
-- name: Run gcp-linux-fastchat-simple role
+- name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp-linux-fastchat-simple creation
+    - name: Running a role gcp linux fastchat simple
       ansible.builtin.import_role:
-        name: gcp-linux-fastchat-simple
+        name: gcp_linux_fastchat_simple
       vars:
-        project: <project_id>
+        project: "<project>"
         fastchat_state: present
 ```
 Use below Command:
 ```commandline
 ansible-playbook gcp_linux_fastchat_simple.yml
 ```
+
 ## Run Ansible with Different State
 #### State - present (terraform apply)
 ```yaml
 ---
-- name: Run gcp-linux-fastchat-simple role
+- name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp-linux-fastchat-simple creation
+    - name: Running a role gcp linux fastchat simple
       ansible.builtin.import_role:
-        name: gcp-linux-fastchat-simple
+        name: gcp_linux_fastchat_simple
       vars:
-        project: <project_id>
+        project: "<project>"
         fastchat_state: present
-      
 ```
 Use below Command:
 ```commandline
 ansible-playbook gcp-linux-fastchat-simple.yml
 ```
-#### Step 1: Deleting gcp_linux_fastchat_simple 
+
+#### Deleting gcp_linux_fastchat_simple 
 ```yaml
 ---
-- name: Run gcp-linux-fastchat-simple role
+- name: Run gcp_linux_fastchat_simple role
   hosts: localhost
   tasks:
-    - name: Running a role gcp-linux-fastchat-simple creation
+    - name: Running a role gcp linux fastchat simple
       ansible.builtin.import_role:
-        name: gcp-linux-fastchat-simple
+        name: gcp_linux_fastchat_simple
       vars:
-        project: <project-id>
+        project: "<project>"
         fastchat_state: absent
-        
 ```
-equirements
-------------
-| Name                                                                               | Version  |
-|------------------------------------------------------------------------------------|----------|
-| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)          | =1.5.7   |
-| <a name="requirement_google"></a> [google](#requirement\_google)                            | ~> 4.36.0 |
-| <a name="requirement_random"></a> [Random](#requirement\_random)                   | ~>3.4.3  |
-| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core) | ~>2.14.2 |
-| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                | ~>7.2.0-1 |
-
-Note: Above role requires `Terraform` as we are executing terraform module [terraform-intel-aws-mysql](<https://github.com/intel/terraform-intel-aws-mysql/tree/main>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
 
 ### Terraform Modules
-| Name                                                                                        |
-|---------------------------------------------------------------------------------------------|
-
-[terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/blob/main>) 
+| Name                                                                                       |
+|--------------------------------------------------------------------------------------------|
+| [terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/blob/main>)      |
 
 # Ansible
 
@@ -112,11 +116,10 @@ Note: Above role requires `Terraform` as we are executing terraform module [terr
 
 | Name                                                                                   | Description                                                                                  | Type     | Default   | Required |
 |----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|----------|-----------|:--------:|
-| <a name="input_mysql_state"></a> [fastchat_state](#input\_auto\_major\_version\_upgrades) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` | no |
+| <a name="input_fastchat_state"></a> [fastchat_state](#input\_fastchat_state) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` | no |
 
 
-
-## gcp linux fastchat siple Exposed Inputs
+## gcp linux fastchat simple Exposed Inputs
 
 | Name                                                                                               | Description                                                                                                                                                                                                                              | Type          | Default                                                                  | Required |
 |----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|--------------------------------------------------------------------------|:--------:|
@@ -124,53 +127,53 @@ Note: Above role requires `Terraform` as we are executing terraform module [terr
 | <a name="input_db_tags"></a> [machine_type](#input\_db\_tags)                                         |  The mahine type to create.                                                                                                                                                                                           | `boolean` | `C3-Standard-4` | no |
  
 
-
-
-
-
-
-## gcp linux fastchat simple Terraform Extended Inputs
+## VM Terraform Extended Inputs
  Below Input variables can be used to extend variables in role, Add or update variable in vars/main.yml file
 ### Usage
 
 roles/gcp_linux_fastchat_simple/vars/main.yml
 
 ```yaml
-db_engine: "mysql"
+hostname: "gcp.vm.04122023"
 ```
 
-roles/gcp_linux_fastchat_simple/tasks/stable_diffusion.yml
+roles/gcp_linux_fastchat_simple/tasks/fastchat.yml
 ```yaml
 ---
-- name: Create random string
-  set_fact:
-    random_id: "{{ lookup('community.general.random_string', length=12, min_special=0, special=false, lower=false, upper=false) }}"
-  when: gcp_vm_state == "present" and vm_update == false
-
-- debug:
-    var: random_id
-
-- name: Create GCP Linux VM with Optimized Cloud Recipe for Stable Diffusion
+- name: Create GCP Linux VM with Intel Cloud Optimized Recipe for FastChat
   community.general.terraform:
     project_path: '{{ gcp_vm_tf_module_path }}'
-    state: '{{ gcp_vm_state }}'
+    state: '{{ fastchat_state }}'
     force_init: true
     complex_vars: true
     variables:
       project: '{{ project }}'
       boot_image_project: '{{ boot_image_project }}'
       boot_image_family: '{{ boot_image_family }}'
-      name: '{{ gcp_vm_name }}'
+      name: '{{ fastchat_vm_name }}'
       zone: '{{ zone }}'
       machine_type: '{{ machine_type }}'
       allow_stopping_for_update: true
-      tags: '{{ tags }}'
+      tags: "{{ tags }}"
       user_data: '{{ cloud_init_data }}'
       access_config: '{{ access_config }}'
-  register: gcp_vm_output
+      hostname: '{{ hostname }}'
+  register: fastchat_output
+```
 
-- debug:
-    var: gcp_vm_output
+Use `hostname` in playbook
+```yaml
+---
+- name: Run gcp_linux_fastchat_simple role
+  hosts: localhost
+  tasks:
+    - name: Running a role gcp linux fastchat simple
+      ansible.builtin.import_role:
+        name: gcp_linux_fastchat_simple
+      vars:
+        project: "<project>"
+        fastchat_state: present
+        hostname: <hostname>
 ```
 
 ## Inputs
