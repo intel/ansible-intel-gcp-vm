@@ -69,10 +69,10 @@ Use playbook to run gcp_linux_fastchat_simple as below
 ```
 Use below Command:
 ```commandline
-ansible-playbook gcp_linux_fastchat_simple.yml
+ansible-playbook intel_gcp_linux_fastchat_simple.yml
 ```
 
-## Run Ansible with Different State
+## Run Ansible with different state
 #### State - present (terraform apply)
 ```yaml
 ---
@@ -88,10 +88,10 @@ ansible-playbook gcp_linux_fastchat_simple.yml
 ```
 Use below Command:
 ```commandline
-ansible-playbook gcp-linux-fastchat-simple.yml
+ansible-playbook intel_gcp_linux_fastchat_simple.yml
 ```
 
-#### Deleting gcp_linux_fastchat_simple 
+#### State - absent (terraform destroy)
 ```yaml
 ---
 - name: Run gcp_linux_fastchat_simple role
@@ -104,6 +104,10 @@ ansible-playbook gcp-linux-fastchat-simple.yml
         project: "<project>"
         fastchat_state: absent
 ```
+Use below Command:
+```commandline
+ansible-playbook intel_gcp_linux_fastchat_simple.yml
+```
 
 ### Terraform Modules
 | Name                                                                                       |
@@ -114,18 +118,37 @@ ansible-playbook gcp-linux-fastchat-simple.yml
 
 ## Module State Inputs
 
-| Name                                                                                   | Description                                                                                  | Type     | Default   | Required |
-|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|----------|-----------|:--------:|
-| <a name="input_fastchat_state"></a> [fastchat_state](#input\_fastchat_state) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` | no |
+| Name                                                                         | Description                                                                               | Type     | Default   | Required |
+|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|----------|-----------|:--------:|
+| <a name="input_fastchat_state"></a> [fastchat_state](#input\_fastchat_state) | It specifices vm state of given stage, choies: "planned", "present" ← (default), "absent" | `string` | `present` |    no    |
 
 
-## gcp linux fastchat simple Exposed Inputs
+## GCP VM Exposed Inputs
 
-| Name                                                                                               | Description                                                                                                                                                                                                                              | Type          | Default                                                                  | Required |
-|----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|--------------------------------------------------------------------------|:--------:|
-| <a name="input_rds_identifier"></a> [zone](#input\rds\_identifier)                      | Name the zone that machine should be created in. if it not provided, the provider zone is used                                                                                                                                                                                           | `string`      | `us-central1-a`                                                                 | no |
-| <a name="input_db_tags"></a> [machine_type](#input\_db\_tags)                                         |  The mahine type to create.                                                                                                                                                                                           | `boolean` | `C3-Standard-4` | no |
- 
+| Name                                                                                           | Description                                                                                                                                                                                                                                                                                                      | Type                                                                                                                                                                             | Default                                                                | Required |
+|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|:--------:|
+| <a name="input_project0"></a> [project](#input\_project0)                                      | The ID of the project in which the resource resides.                                                                                                                                                                                                                                                             | `string`                                                                                                                                                                         | ``                                                                     |   yes    |
+| <a name="input_fastchat_vm_name"></a> [fastchat_vm_name](#input\_fastchat_vm_name)             | A unique name for the resource, required by GCE. Changing this forces a new resource to be created.                                                                                                                                                                                                              | `string`                                                                                                                                                                         | `intel-fastchat-{{random_id}}`                                         |    no    |
+| <a name="input_boot_image_family0"></a> [boot\_image\_family](#input\_boot\_image\_family0)    | The image from which to initialize this disk                                                                                                                                                                                                                                                                     | `string`                                                                                                                                                                         | `"ubuntu-2204-lts"`                                                    |    no    |
+| <a name="input_boot_image_project0"></a> [boot\_image\_project](#input\_boot\_image\_project0) | The ID of the project in which the source image resides.                                                                                                                                                                                                                                                         | `string`                                                                                                                                                                         | `"ubuntu-os-cloud"`                                                    |    no    |
+| <a name="input_zone0"></a> [zone](#input\_zone0)                                               | Name the zone that machine should be created in. if it not provided, the provider zone is used                                                                                                                                                                                                                   | `string`                                                                                                                                                                         | `us-central1-a`                                                        |    no    |
+| <a name="input_machine_type0"></a> [machine_type](#input\_machine_type0)                       | The mahine type to create.                                                                                                                                                                                                                                                                                       | `string`                                                                                                                                                                        | `c3-standard-22`                                                        |    no    |
+| <a name="input_tags0"></a> [vm_tags](#input\_tags0)                                            | A list of network tags to attach to the instance                                                                                                                                                                                                                                                                 | `list(string)`                                                                                                                                                                   | `["fschat-{{random_id}}"]`                                             |    no    |
+| <a name="input_access_config0"></a> [access\_config](#input\_access\_config0)                  | Access configurations, i.e. IPs via which this instance can be accessed via the Internet. Omit to ensure that the instance is not accessible from the Internet. If omitted, ssh provisioners will not work unless Terraform can send traffic to the instance's network. This can be represented as multiple maps | <pre>list(object({<br>    nat_ip                 = optional(string, null)<br>    public_ptr_domain_name = optional(string)<br>    network_tier = optional(string)<br>  }))</pre> | `[{"nat_ip":"","public_ptr_domain_name":"","network_tier":"PREMIUM"}]` |    no    |
+
+## GCP Firewall Exposed Inputs
+
+| Name                                                                                    | Description                                                                                                                                                                                                                                   | Type     | Default                                                       | Required |
+|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------------------------------------------------------------|:--------:|
+| <a name="input_fw_name"></a> [fw_name](#input_fw_name)                                  | A unique name for the resource, required by GCE.                                                                                                                                                                                              | `string` | `intel-fastchat-firewall-{{random_id}}`                       |    no    |
+| <a name="input_fw_description"></a> [fw_description](#input_fw_description)             | An optional description of this resource. Provide this property when you create the resource.                                                                                                                                                 | `string` | `"Allows access to FastChat Webserver"`                       |    no    |
+| <a name="input_network_name"></a> [network_name](#input_network_name)                             | This field represents a link to a Network resource in GCP..                                                                                                                                                                                   | `string` | '{"selfLink": "global/networks/default"}'                     |    no    |
+| <a name="input_fw_allowed"></a> [fw_allowed](#input_fw_allowed)                         | The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.                                                                                                | `list`   | `[{"ip_protocol":"tcp","ports":["22","5000","5001","7860"]}]` |    no    |
+| <a name="input_target_tags"></a> [target_tags](#input_target_tags)                      | A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network. | `string` | `["fschat-{{random_id}}"]`                                    |    no    |
+| <a name="input_source_ranges"></a> [source_ranges](#input_source_ranges)                | If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format                                                                             | `string` | `["0.0.0.0/0"]`                                               |    no    |
+| <a name="input_gcp_auth_kind"></a> [gcp_auth_kind](#input_gcp_auth_kind)                | TThe type of credential used. Choices: "application", "machineaccount", "serviceaccount", "accesstoken"                                                                                                                                       | `string` | `serviceaccount`                                              |    no    |
+| <a name="input_gcp_cred_file_path"></a> [gcp_cred_file_path](#input_gcp_cred_file_path) | The path of a Service Account JSON file if serviceaccount is selected as type.                                                                                                                                                                | `string` | `/tmp/gcp_cred.json`                                          |    no    |
+
 
 ## VM Terraform Extended Inputs
  Below Input variables can be used to extend variables in role, Add or update variable in vars/main.yml file
@@ -154,7 +177,7 @@ roles/gcp_linux_fastchat_simple/tasks/fastchat.yml
       zone: '{{ zone }}'
       machine_type: '{{ machine_type }}'
       allow_stopping_for_update: true
-      tags: "{{ tags }}"
+      tags: "{{ vm_tags }}"
       user_data: '{{ cloud_init_data }}'
       access_config: '{{ access_config }}'
       hostname: '{{ hostname }}'
