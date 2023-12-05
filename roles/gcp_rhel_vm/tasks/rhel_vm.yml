@@ -1,4 +1,9 @@
 ---
+- name: 'Check mandatory variables are defined'
+  assert:
+    that:
+      - project is defined
+
 - name: Create GCP Linux VM with Rhel image
   community.general.terraform:
     project_path: '{{ gcp_vm_tf_module_path }}'

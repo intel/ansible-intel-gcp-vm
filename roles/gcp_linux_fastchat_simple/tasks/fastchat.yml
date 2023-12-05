@@ -1,4 +1,10 @@
 ---
+# tasks for optimized-mysql-server CURD operations
+- name: 'Check mandatory variables are defined'
+  assert:
+    that:
+      - project is defined
+
 - name: Create random string
   set_fact:
     random_id: "{{ lookup('community.general.random_string', length=12, min_special=0, special=false, lower=false, upper=false) }}"
@@ -21,7 +27,7 @@
       zone: '{{ zone }}'
       machine_type: '{{ machine_type }}'
       allow_stopping_for_update: true
-      tags: "{{ tags }}"
+      tags: "{{ vm_tags }}"
       user_data: '{{ cloud_init_data }}'
       access_config: '{{ access_config }}'
   register: fastchat_output
