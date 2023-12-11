@@ -54,6 +54,9 @@ Requirements
        ``` 
 
 ## Usage
+> [!WARNING]  
+> Once a VM is created, refrain from updating its name. Any alterations to the name will result in the creation of a new VM. 
+
 Use playbook to run gcp_linux_fastchat_simple as below
 ```yml
 ---
