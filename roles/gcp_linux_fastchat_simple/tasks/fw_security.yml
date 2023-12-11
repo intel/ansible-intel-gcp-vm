@@ -2,7 +2,7 @@
 - name: Create GCP Firewall Rule
   google.cloud.gcp_compute_firewall:
     state: '{{ fastchat_state }}'
-    project: '{{ project_id }}'
+    project: '{{ project }}'
     name: '{{ fw_name }}'
     network: '{{network_name}}'
     description: '{{ fw_description }}'
