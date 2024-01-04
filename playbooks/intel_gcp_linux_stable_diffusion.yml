@@ -1,0 +1,11 @@
+---
+- name: Run gcp_linux_stable_diffusion role
+  hosts: localhost
+  tasks:
+    - name: Running a role gcp linux stable diffusion
+      ansible.builtin.import_role:
+        name: gcp_linux_stable_diffusion
+      vars:
+        project: "fluid-tuner-405104"
+        gcp_vm_state: present
+

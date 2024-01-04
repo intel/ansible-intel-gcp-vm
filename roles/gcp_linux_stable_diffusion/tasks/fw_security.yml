@@ -1,0 +1,17 @@
+---
+- name: Create GCP Firewall Rule
+  google.cloud.gcp_compute_firewall:
+    state: '{{ gcp_vm_state }}'
+    project: '{{ project }}'
+    name: '{{ fw_name }}'
+    network: '{{ network_name }}'
+    description: '{{ fw_description }}'
+    allowed: '{{ fw_allowed }}'
+    source_ranges: "{{ source_ranges }}"
+    target_tags: "{{ target_tags }}"
+    auth_kind: "{{ gcp_auth_kind }}"
+    service_account_file: "{{ gcp_cred_file_path }}"
+  register: gcp_fw_output
+
+- debug:
+    var: gcp_fw_output

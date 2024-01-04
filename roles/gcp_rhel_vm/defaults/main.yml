@@ -1,0 +1,3 @@
+---
+# defaults file for gcp_rhel_vm
+gcp_vm_tf_source: https://github.com/intel/terraform-intel-gcp-vm.git

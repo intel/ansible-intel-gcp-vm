@@ -1,0 +1,38 @@
+---
+# vars file for gcp_linux_stable_diffusion
+# build in
+role_name: '{{role_path|basename}}'
+ansible_python_interpreter: /usr/bin/python3
+
+# terraform path
+gcp_vm_tf_module_path: '/home/{{ansible_env.USER}}/{{ role_name }}/terraform/gcp_linux_stable_diffusion/'
+
+# cloud init path
+cloud_init_config_path: examples/gcp-linux-stable-diffusion/
+
+# stable_diffusion vm
+gcp_vm_state: present
+boot_image_project: "ubuntu-os-cloud"
+boot_image_family: "ubuntu-2204-lts"
+gcp_vm_name: "intel-diffusion-{{random_id}}"
+machine_type: "c3-standard-44"
+vm_tags: ["diffusion-{{random_id}}"]
+zone: "us-central1-a"
+access_config:
+  - nat_ip: ''
+    public_ptr_domain_name: ''
+    network_tier: 'PREMIUM'
+
+# firewall security
+fw_name: "diffusion-firewall-{{random_id}}"
+fw_description: "Allows access to Stable Diffusion"
+network_name: {"selfLink": "global/networks/default"}
+ip_protocol: tcp
+ports: ["22", "5000", "5001", "7860"]
+fw_allowed:
+  - ip_protocol: '{{ ip_protocol }}'
+    ports: '{{ ports }}'
+target_tags: ["diffusion-{{random_id}}"]
+source_ranges: ["0.0.0.0/0"]
+gcp_auth_kind: "serviceaccount"
+gcp_cred_file_path: "/tmp/gcp_cred.json"

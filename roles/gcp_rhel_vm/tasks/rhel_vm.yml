@@ -1,0 +1,22 @@
+---
+- name: 'Check mandatory variables are defined'
+  assert:
+    that:
+      - project is defined
+
+- name: Create GCP Linux VM with Rhel image
+  community.general.terraform:
+    project_path: '{{ gcp_vm_tf_module_path }}'
+    state: '{{ gcp_rhel_vm_state }}'
+    force_init: true
+    complex_vars: true
+    variables:
+      project: '{{ project }}'
+      boot_image_project: '{{ boot_image_project }}'
+      boot_image_family: '{{ boot_image_family }}'
+      name: '{{ gcp_rhel_vm_name }}'
+      access_config: '{{ access_config }}'
+  register: gcp_vm_output
+
+- debug:
+    var: gcp_vm_output

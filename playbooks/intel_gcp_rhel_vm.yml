@@ -1,0 +1,11 @@
+---
+- name: Run gcp_rhel_vm role
+  hosts: localhost
+  tasks:
+    - name: Running a role gcp rhel vm
+      ansible.builtin.import_role:
+        name: gcp_rhel_vm
+      vars:
+        project: "fluid-tuner-405104"
+        gcp_rhel_vm_state: present
+
