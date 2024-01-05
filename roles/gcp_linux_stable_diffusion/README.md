@@ -30,6 +30,14 @@ Requirements
     ```
 2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/tree/main>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
 
+## Authenticate GCP
+1. Download and Install Google Cloud CLI: https://cloud.google.com/sdk/docs/install
+2. GCP account access configured: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference.html#running-terraform-on-your-workstation
+3. Create service account: https://cloud.google.com/iam/docs/keys-create-delete 
+   - Copy to location: /tmp/gcp_cred.json
+       ```commandline
+           cp <your-path/gcp_cred.json> /tmp/gcp_cred.json
+       ```
 
 ## Installation of `gcp_linux_stable_diffusion` role
 ### Below are ways to install and use it:
