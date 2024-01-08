@@ -10,26 +10,6 @@
 
 This demo will showcase Stable Diffusion CPU inferencing using 4th Gen Xeon Scalable Processors on GCP.
 
-Requirements
-------------
-| Name                                                                                            | Version    |
-|-------------------------------------------------------------------------------------------------|------------|
-| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)                       | =1.5.7     |
-| <a name="requirement_google_cloud_cli"></a> [Google Cloud CLI](#requirement\_google_cloud_cli)  | ~> 455.0.0 |
-| <a name="requirement_random"></a> [Random](#requirement\_random)                                | ~>3.4.3    |
-| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core)             | ~>2.14.2   |
-| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                             | ~>7.2.0-1  |
-| <a name="requirement_requests"></a> [Requests](#requirement\_requests)                          | ~> 2.18.4  |
-| <a name="requirement_google_auth"></a> [Google-auth](#requirement\_google_auth)                 | ~>1.3.0    |
-| <a name="requirement_cryptography"></a> [Cryptography](#requirement\_cryptography)              | ~>41.0.5   |
-
-1. Install requirements using `requirements.txt` and `requirements.yml`, Use below command:
-    ```bash
-    pip3 install -r requirements.txt
-    ansible-galaxy install -r requirements.yml
-    ```
-2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/tree/main>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
-
 ## Authenticate GCP
 1. Download and Install Google Cloud CLI: https://cloud.google.com/sdk/docs/install
 2. GCP account access configured: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference.html#running-terraform-on-your-workstation
@@ -60,6 +40,27 @@ Requirements
        cd ansible-intel-gcp-vm
        cp -r role/gcp_linux_stable_diffusion on /<your project path>/
        ``` 
+
+Requirements
+------------
+| Name                                                                                            | Version    |
+|-------------------------------------------------------------------------------------------------|------------|
+| <a name="requirement_terraform"></a> [Terraform](#requirement\_terraform)                       | =1.5.7     |
+| <a name="requirement_google_cloud_cli"></a> [Google Cloud CLI](#requirement\_google_cloud_cli)  | ~> 455.0.0 |
+| <a name="requirement_random"></a> [Random](#requirement\_random)                                | ~>3.4.3    |
+| <a name="requirement_ansible_core"></a> [Ansible Core](#requirement\_ansible\_core)             | ~>2.14.2   |
+| <a name="requirement_ansible"></a> [Ansible](#requirement\_ansible)                             | ~>7.2.0-1  |
+| <a name="requirement_requests"></a> [Requests](#requirement\_requests)                          | ~> 2.18.4  |
+| <a name="requirement_google_auth"></a> [Google-auth](#requirement\_google_auth)                 | ~>1.3.0    |
+| <a name="requirement_cryptography"></a> [Cryptography](#requirement\_cryptography)              | ~>41.0.5   |
+
+1. Install requirements using `requirements.txt` and `requirements.yml`, Use below command:
+    ```bash
+    pip3 install -r requirements.txt
+    ansible-galaxy install -r requirements.yml
+    ```
+2. Above role requires `Terraform` as we are executing terraform module [terraform-intel-gcp-vm](<https://github.com/intel/terraform-intel-gcp-vm/tree/main>) using Ansible module called [community.general.terraform](<https://docs.ansible.com/ansible/latest/collections/community/general/terraform_module.html>)
+
 
 ## Usage
 
