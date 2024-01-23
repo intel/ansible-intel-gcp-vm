@@ -16,6 +16,7 @@
       boot_image_family: '{{ boot_image_family }}'
       name: '{{ gcp_rhel_vm_name }}'
       access_config: '{{ access_config }}'
+      zone: '{{ zone }}'
   register: gcp_vm_output
 
 - debug:

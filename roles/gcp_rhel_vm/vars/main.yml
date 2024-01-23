@@ -16,3 +16,4 @@ access_config:
   - nat_ip: ''
     public_ptr_domain_name: ''
     network_tier: 'PREMIUM'
+zone: "us-central1-a"
