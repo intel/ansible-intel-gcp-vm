@@ -6,6 +6,6 @@
       ansible.builtin.import_role:
         name: gcp_linux_fastchat_simple
       vars:
-        project: "fluid-tuner-405104"
+        project: "your-gcp-project"
         fastchat_state: present
 

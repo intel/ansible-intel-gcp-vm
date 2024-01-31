@@ -6,6 +6,6 @@
       ansible.builtin.import_role:
         name: gcp_linux_stable_diffusion
       vars:
-        project: "fluid-tuner-405104"
+        project: "your-gcp-project"
         gcp_vm_state: present
 

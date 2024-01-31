@@ -23,11 +23,11 @@
         # https://github.com/intel/terraform-intel-gcp-vm/blob/main/variables.tf
         variables:
           name: gcp-vm-playbook
-          project: "fluid-tuner-405104"
+          project: "your-gcp-project"
           boot_image_project: "ubuntu-os-cloud"
           boot_image_family: "ubuntu-2204-lts"
           zone: "us-central1-a"
-          machine_type: "e2-micro"
+          machine_type: "c3-standard-4"
           allow_stopping_for_update: true
       register: vm_output
 
