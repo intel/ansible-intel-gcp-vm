@@ -6,6 +6,6 @@
       ansible.builtin.import_role:
         name: gcp_rhel_vm
       vars:
-        project: "fluid-tuner-405104"
+        project: "your-gcp-project"
         gcp_rhel_vm_state: present
 
