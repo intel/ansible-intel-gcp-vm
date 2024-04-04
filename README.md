@@ -155,7 +155,7 @@ Note:
 
    2. Download source and copy role directory to your Ansible boilerplate  from GitHub (used to extended behavior of role)  
        ```commandline
-       git clone https://github.com/OTCShare2/ansible-intel-gcp-vm.git
+       git clone https://github.com/intel/ansible-intel-gcp-vm.git
        cd ansible-intel-gcp-vm
        cp -r role/gcp_linux_fastchat_simple /<your project path>/
        ```
@@ -194,11 +194,11 @@ Use [playbook](playbooks/intel_gcp_vm.yml) to execute Terraform module [terrafor
         # https://github.com/intel/terraform-intel-gcp-vm/blob/main/variables.tf
         variables:
           name: gcp-vm-playbook
-          project: "fluid-tuner-405104"
+          project: "your-gcp-project"
           boot_image_project: "ubuntu-os-cloud"
           boot_image_family: "ubuntu-2204-lts"
           zone: "us-central1-a"
-          machine_type: "e2-micro"
+          machine_type: "c3-standard"
           allow_stopping_for_update: true
       register: vm_output
 
@@ -257,9 +257,9 @@ ansible-playbook intel_gcp_vm.yml
 
 | Role Name                                                                                                                  |
 |----------------------------------------------------------------------------------------------------------------------------|
-| [gcp_linux_fastchat_simple](https://github.com/OTCShare2/ansible-intel-gcp-vm/tree/main/roles/gcp_linux_fastchat_simple)   |
-| [gcp_linux_stable_diffusion](https://github.com/OTCShare2/ansible-intel-gcp-vm/tree/main/roles/gcp_linux_stable_diffusion) |
-| [gcp_rhel_vm](https://github.com/OTCShare2/ansible-intel-gcp-vm/tree/main/roles/gcp_rhel_vm)                               |
+| [gcp_linux_fastchat_simple](https://github.com/intel/ansible-intel-gcp-vm/tree/main/roles/gcp_linux_fastchat_simple)   |
+| [gcp_linux_stable_diffusion](https://github.com/intel/ansible-intel-gcp-vm/tree/main/roles/gcp_linux_stable_diffusion) |
+| [gcp_rhel_vm](https://github.com/intel/ansible-intel-gcp-vm/tree/main/roles/gcp_rhel_vm)                               |
 
 
 ## Inputs

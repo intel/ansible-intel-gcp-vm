@@ -36,7 +36,7 @@ This demo will showcase Large Language Model(LLM) CPU inference using 4th Gen Xe
 
    2. Download source and Copy role directory to your Ansible  boilerplate  from GitHub (Used to extended behavior of role)  
        ```commandline
-       git clone https://github.com/OTCShare2/ansible-intel-gcp-vm.git
+       git clone https://github.com/intel/ansible-intel-gcp-vm.git
        cd ansible-intel-gcp-vm
        cp -r role/gcp-linux-fastchat-simple on /<your project path>/
        ``` 

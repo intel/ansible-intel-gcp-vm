@@ -36,7 +36,7 @@ This demo will showcase Stable Diffusion CPU inferencing using 4th Gen Xeon Scal
 
    2. Download source and Copy role directory to your Ansible  boilerplate  from GitHub (Used to extended behavior of role)  
        ```commandline
-       git clone https://github.com/OTCShare2/ansible-intel-gcp-vm.git
+       git clone https://github.com/intel/ansible-intel-gcp-vm.git
        cd ansible-intel-gcp-vm
        cp -r role/gcp_linux_stable_diffusion on /<your project path>/
        ``` 

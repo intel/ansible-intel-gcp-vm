@@ -1,12 +1,13 @@
-namespace: intel
-name: ansible_intel_gcp_vm
-version: 1.0.0
-readme: README.md
+namespace: "intel"
+name: "ansible_intel_gcp_vm"
+version: "1.0.0"
+readme: "README.md"
 authors:
-  - Akhil D <akhil.d@intel.com>
+  - "KevinBleckmann <optimized-cloud-modules@intel.com>""
 description: This module will create virtual machine in GCP, The instance is pre-configured with parameters.
 tags:
   - ansible
   - gcp
   - vm
-repository: 'https://github.com/OTCShare2/ansible-intel-gcp-vm'
+  - linux
+repository: 'https://github.com/intel/ansible-intel-gcp-vm'

@@ -32,7 +32,7 @@ For the list of publicly available images for compute engines see https://cloud.
 
    2. Download source and Copy role directory to your Ansible  boilerplate  from GitHub (Used to extended behavior of role)  
        ```commandline
-       git clone https://github.com/OTCShare2/ansible-intel-gcp-vm.git
+       git clone https://github.com/intel/ansible-intel-gcp-vm.git
        cd ansible-intel-gcp-vm
        cp -r role/gcp_rhel_vm on /<your project path>/
        ``` 
