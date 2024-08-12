@@ -9,6 +9,7 @@
 ## GCP VM module
 This module provides the functionality to ensure that you are utilizing Intel's latest generation processor in the creation of a virtual machine in GCP.
 
+
 ### Explained Ansible GCP VM collection
 This collection included 3 roles and 4 playbooks.
 
